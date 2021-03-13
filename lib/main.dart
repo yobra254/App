@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class News {
   String id;
@@ -28,6 +30,7 @@ class News {
 class NewsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
@@ -46,25 +49,43 @@ void main() {
 }
 
 class _HomePageState extends State<HomePage> {
+/*   static List<News> news = List<News>();
+  static List<News> newsInApp = List<News>(); */
+Future<List<News>> comingNews(){
+  var url = 'http://www.mocky.io/v2/5ecfddf13200006600e3d6d0';
+  var response = await http.get(url);
+  var news = List<News>();
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(97),
-        child: Column(children: <Widget>[
-          Container(
-            child: AppBar(
-              title: Text(
-                'News',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 30,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 25),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                        bottom: BorderSide(
+                      width: 0.5,
+                      color: Colors.white,
+                    ))),
+                child: AppBar(
+                  title: Text(
+                    'Brian News',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 30,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          )
-        ]),
+              )
+            ]),
       ),
     );
   }
