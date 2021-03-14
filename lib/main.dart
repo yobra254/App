@@ -116,7 +116,40 @@ class _HomePageState extends State<HomePage> {
 
   _listItem(index) {
     return Container(
-      child: Column(children: <Widget>[]),
-    );
+        child: Padding(
+      padding: const EdgeInsets.only(left: 15, top: 1, right: 1, bottom: 1),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Expanded(
+                    child: Padding(
+                  padding: const EdgeInsets.only(bottom: 15),
+                  child: Text(
+                    _newsInApp[index].title,
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                )),
+                Container(
+                  height: 50,
+                  child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: IconButton(
+                          iconSize: 16,
+                          color: Colors.black26,
+                          alignment: Alignment.bottomCenter,
+                          icon: Icon(Icons.arrow_forward_ios),
+                          onPressed: () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {})))),
+                )
+              ],
+            )
+          ]),
+    ));
   }
 }
