@@ -116,40 +116,83 @@ class _HomePageState extends State<HomePage> {
 
   _listItem(index) {
     return Container(
-        child: Padding(
-      padding: const EdgeInsets.only(left: 15, top: 1, right: 1, bottom: 1),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: Text(
-                    _newsInApp[index].title,
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                )),
-                Container(
-                  height: 50,
-                  child: Align(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15, top: 1, right: 1, bottom: 1),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+            Widget>[
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: Text(
+                _newsInApp[index].title,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+            )),
+            Container(
+              height: 50,
+              child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: IconButton(
+                      iconSize: 16,
+                      color: Colors.black26,
                       alignment: Alignment.bottomCenter,
-                      child: IconButton(
-                          iconSize: 16,
-                          color: Colors.black26,
-                          alignment: Alignment.bottomCenter,
-                          icon: Icon(Icons.arrow_forward_ios),
-                          onPressed: () => Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {})))),
-                )
-              ],
+                      icon: Icon(Icons.arrow_forward_ios),
+                      onPressed: () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return new MaterialApp(
+                                debugShowCheckedModeBanner: false,
+                                home: Scaffold(
+                                    appBar: AppBar(
+                                      centerTitle: true,
+                                      backgroundColor: Colors.white,
+                                      leading: IconButton(
+                                        iconSize: 20,
+                                        color: Colors.blue,
+                                        icon: Icon(Icons.arrow_back_ios),
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                      title: Text(
+                                        _newsInApp[index].title,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    body: SingleChildScrollView(
+                                        child: Center(
+                                            child: Column(children: <Widget>[
+                                      Container(
+                                          height: 220,
+                                          width: 400,
+                                          margin: EdgeInsets.only(
+                                            bottom: 10,
+                                          ),
+                                          child: Image.network(
+                                              _newsInApp[index].image,
+                                              fit: BoxFit.cover)),
+                                    ])))));
+                          })))),
             )
           ]),
-    ));
+          Text(
+            _newsInApp[index].publisher,
+            style: TextStyle(
+              color: Colors.grey.shade600,
+              fontSize: 17,
+            ),
+          ),
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Divider(color: Colors.black12),
+          )
+        ]),
+      ),
+    );
   }
 }
